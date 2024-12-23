@@ -51,7 +51,7 @@ export async function POST(req: Request) {
         { status: typedError.status || 500 }
       );
     } else {
-      
+  
       return NextResponse.json(
         { error: "Something went wrong" },
         { status: 500 }
