@@ -32,6 +32,13 @@ You should see the login screen.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/nextauthjs/next-auth-example)  
 
+## Future Features
+
+* Add a forgot password feature
+* Add a reset password feature
+* Add a magic link feature
+* Store user data in a database
+
 
 
 
