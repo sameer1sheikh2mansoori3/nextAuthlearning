@@ -1,9 +1,9 @@
-import { User } from "@/app/lib/user.model";
+
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import GithubProvider from "next-auth/providers/github";
+
 import GoogleProvider from "next-auth/providers/google";
- // Ensure bcrypt is installed
+
 
 const handler = NextAuth({
   providers: [

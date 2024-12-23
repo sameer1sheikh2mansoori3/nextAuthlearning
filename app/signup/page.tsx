@@ -1,23 +1,24 @@
 'use client';
 
 import axios from 'axios';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation'; // Import useRouter for navigation
+import { useState, ChangeEvent, FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Signup() {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
-  const router = useRouter(); // Initialize router
+  const router = useRouter();
 
-  const handleChange = (e: any) => {
+  
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e: any) => {
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Validate input
     if (!formData.email || !formData.password) {
       setError('Email and Password are required!');
       return;
@@ -32,11 +33,10 @@ export default function Signup() {
       setError('');
       console.log('Form submitted:', res);
 
-      // Redirect to homepage on successful signup
       router.push('/');
-    } catch (err: any) {
-      console.log(err);
-      if (err.response?.status === 409) {
+    } catch (err: unknown) {
+      console.error(err);
+      if (axios.isAxiosError(err) && err.response?.status === 409) {
         setError('A user with this email already exists.');
       } else {
         setError('Something went wrong. Please try again.');
