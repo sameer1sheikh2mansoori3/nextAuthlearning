@@ -14,7 +14,7 @@ type MongooseCache = {
 
 // Extend global to include the mongoose property
 declare global {
-  var mongoose: MongooseCache | undefined;
+  const mongoose: MongooseCache | undefined;
 }
 
 // Use the cache or initialize it
