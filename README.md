@@ -28,9 +28,13 @@ You should see the login screen.
 
 ![Login](/login.png)
 
-## Deploy to Vercel 
+## Live Demo
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/nextauthjs/next-auth-example)  
+[https://next-authlearning.vercel.app/](https://next-authlearning.vercel.app/)
+
+<!-- ## Deploy to Vercel 
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/nextauthjs/next-auth-example) -->
 
 ## Future Features
 
