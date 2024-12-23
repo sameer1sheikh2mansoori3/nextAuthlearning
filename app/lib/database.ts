@@ -1,40 +1,26 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const MONGODB_URI = process.env.MONGODB_URI;
+ async function connectToDatabase() {
+    try {
+        mongoose.connect(process.env.MONGO_URI!);
+        const connection = mongoose.connection;
 
-if (!MONGODB_URI) {
-  throw new Error("Please define the MONGODB_URI environment variable");
-}
+        connection.on('connected', () => {
+            console.log('MongoDB connected successfully');
+        })
 
-// Define the cache type
-type MongooseCache = {
-  conn: mongoose.Connection | null;
-  promise: Promise<mongoose.Connection> | null;
-};
+        connection.on('error', (err) => {
+            console.log('MongoDB connection error. Please make sure MongoDB is running. ' + err);
+            process.exit();
+        })
 
-// Extend global to include the mongoose property
-declare global {
-  const mongoose: MongooseCache | undefined;
-}
+    } catch (error) {
+        console.log('Something goes wrong!');
+        console.log(error);
+        
+    }
 
-// Use the cache or initialize it
-const cached: MongooseCache = globalThis.mongoose || { conn: null, promise: null };
 
-if (!globalThis.mongoose) {
-  globalThis.mongoose = cached;
-}
-
-async function connectToDatabase() {
-  if (cached.conn) {
-    return cached.conn;
-  }
-
-  if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI || "").then((mongoose) => mongoose.connection);
-  }
-
-  cached.conn = await cached.promise;
-  return cached.conn;
 }
 
 export default connectToDatabase;
