@@ -1,9 +1,8 @@
 
 import { User } from "@/app/lib/user.model";
 import { NextResponse } from "next/server";
-import connectToDatabase from "@/app/lib/database"; 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-connectToDatabase();
+
 // POST handler for signup
 export async function POST(req: Request) {
 
