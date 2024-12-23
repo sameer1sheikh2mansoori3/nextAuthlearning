@@ -9,12 +9,6 @@ interface User {
   name: string;
 }
 
-// Define the structure of the credentials object
-interface Credentials {
-  username: string;
-  password: string;
-}
-
 const handler = NextAuth({
   providers: [
     GoogleProvider({
@@ -28,7 +22,9 @@ const handler = NextAuth({
         username: { label: "Email", type: "text", placeholder: "Enter your email" },
         password: { label: "Password", type: "password", placeholder: "Enter your password" },
       },
-      async authorize(credentials: Credentials | null): Promise<User | null> {
+      async authorize(
+        credentials: Record<"username" | "password", string> | undefined
+      ): Promise<User | null> {
         if (!credentials) {
           return null; // Return null if credentials are not provided
         }
